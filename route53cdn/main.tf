@@ -28,7 +28,7 @@ resource "aws_cloudfront_distribution" "R53CDNDistribution" {
   is_ipv6_enabled     = true
   comment             = "Provisioned by R53CDN"
   default_root_object = var.Default_Root_Object
-  aliases             = [var.Record_Name]
+  aliases             = [var.Record_FullName]
   default_cache_behavior {
     allowed_methods        = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
     cached_methods         = ["GET", "HEAD"]
@@ -62,5 +62,9 @@ resource "aws_cloudfront_distribution" "R53CDNDistribution" {
 }
 
 resource "aws_route53_record" "Web_record" {
-    zone_id = aws_route53_zone 
+    zone_id = var.Route53ID
+    name = var.Record_Name
+    type = "CNAME"
+    ttl = "360"
+    records = [aws_cloudfront_distribution.R53CDNDistribution.domain_name]
 }

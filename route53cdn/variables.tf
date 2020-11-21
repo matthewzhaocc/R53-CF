@@ -5,8 +5,10 @@ variable "ACM_ARN" {
 variable "Record_Name" {
   type = string
 }
-
-variable "Route53_ARN" {
+variable "Record_FullName" {
+    type = string
+}
+variable "Route53_ID" {
   type = string
 }
 

@@ -1,2 +1,2 @@
 # R53-CF
-a CLI tool that spawns r53 and Cloudfront
+a Terraform module that spawns r53 and Cloudfront
